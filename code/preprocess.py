@@ -1,6 +1,6 @@
 import re
 
-SEPARATE_1001299944 = ",:;()+—<>=\""
+SEPARATE_1001299944 = ",:;()+—<>=\"-"
 def preprocess(in_sentence, language):
     """ 
     This function preprocesses the input text according to language-specific rules.
@@ -16,7 +16,6 @@ def preprocess(in_sentence, language):
 	out_sentence: (string) the modified sentence
     """
     # TODO: Implement Function
-    out_sentence = "SENTSTART"
     in_paren = False
     out_sentence = in_sentence.lower()
     if out_sentence[-1] in ".?!":
@@ -33,7 +32,16 @@ def preprocess(in_sentence, language):
     	out_sentence = re.sub(r"([a-z]')(on|il)\s", r"\1 \2 ", out_sentence)
     	out_sentence = re.sub(r"(d')( )(abord|accord|ailleurs|habitude)", r"\1\3", out_sentence)
 
-    out_sentence += " SENTEND"
+    out_sentence = "SENTSTART " + out_sentence + " SENTEND"
     out_sentence = re.sub(r"\s{2,}", " ", out_sentence)
 
     return out_sentence
+
+
+def main():
+	with open("./test.f", "r") as file:
+		for line in file.readlines():
+			print(line + " ::: " + preprocess(line, "f"))
+
+if __name__ == "__main__":
+	main()
