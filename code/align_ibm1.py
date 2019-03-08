@@ -27,7 +27,13 @@ def align_ibm1(train_dir, num_sentences, max_iter, fn_AM):
     AM = {}
     
     # Read training data
+    files = os.listdir(test_dir)
+
+    # vocab_size = len(LM["uni"])
     
+    for ffile in files:
+        opened_file = open(test_dir+ffile, "r")
+        for line in opened_file:
     
     # Initialize AM uniformly
 
@@ -55,6 +61,17 @@ def read_hansard(train_dir, num_sentences):
 	Make sure to read the files in an aligned manner.
 	"""
     # TODO
+    files = os.listdir(train_dir)
+
+    # vocab_size = len(LM["uni"])
+    
+    for ffile in files:
+        opened_file = open(train_dir+ffile, "r")
+        count = 0
+        for line in opened_file:
+        	if count == num_sentences:
+        		break
+        	
 
 def initialize(eng, fre):
     """

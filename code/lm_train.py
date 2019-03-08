@@ -33,28 +33,29 @@ def lm_train(data_dir, language, fn_LM):
     LM["bi"] = {}
     # mypath = "../data/Hansard/Training/"
     
-    onlyfiles = [f for f in os.listdir(data_dir) if os.isfile(os.join(data_dir, f))]
+    onlyfiles = os.listdir(data_dir)
     for name in onlyfiles:
-        with open(name, "r") as file:
-            for line in file.readlines():
-                sentence = preprocess(line).split(" ")
-                for i in range(len(sentence)):
-                    word = sentence[i]
-                    if len(word.strip()) > 0:
-                        if word in LM["uni"]:
-                            LM["uni"][word] += 1
-                        else:
-                            LM["uni"][word] = 1
-                        if i > 0:
-                            item = sentence[i-1]
-                            if item in LM["bi"]:
-                                if word in LM["bi"][item]:
-                                    LM["bi"][item][word] += 1
-                                else:
-                                    LM["bi"][item][word] = 1
+        if name[-1] == language:
+            with open(data_dir+name, "r") as file:
+                for line in file.readlines():
+                    sentence = preprocess(line, name[-1]).split(" ")
+                    for i in range(len(sentence)):
+                        word = sentence[i]
+                        if len(word.strip()) > 0:
+                            if word in LM["uni"]:
+                                LM["uni"][word] += 1
                             else:
-                                LM["bi"][item] = {}
-                                LM["bi"][item][word] = 1
+                                LM["uni"][word] = 1
+                            if i > 0:
+                                item = sentence[i-1]
+                                if item in LM["bi"]:
+                                    if word in LM["bi"][item]:
+                                        LM["bi"][item][word] += 1
+                                    else:
+                                        LM["bi"][item][word] = 1
+                                else:
+                                    LM["bi"][item] = {}
+                                    LM["bi"][item][word] = 1
     #Save Model
     with open(fn_LM+'.pickle', 'wb') as handle:
         pickle.dump(LM, handle, protocol=pickle.HIGHEST_PROTOCOL)

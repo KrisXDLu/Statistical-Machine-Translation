@@ -16,8 +16,8 @@ def preprocess(in_sentence, language):
 	out_sentence: (string) the modified sentence
     """
     # TODO: Implement Function
-    in_paren = False
     out_sentence = in_sentence.lower()
+    out_sentence = out_sentence.replace('\n','').strip()
     if out_sentence[-1] in ".?!":
     	out_sentence = out_sentence[:-1] + " " + out_sentence[-1]
 
