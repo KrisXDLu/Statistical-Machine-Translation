@@ -75,8 +75,8 @@ def read_hansard(train_dir, num_sentences):
             if count == num_sentences:
                 return english, french
             count += 1
-            english.append(preprocess(eng_lines[i].strip(), "e").strip().split(" ")[1:-1])
-            french.append(preprocess(fre_lines[i].strip(), "f").strip().split(" ")[1:-1])
+            english.append(preprocess(eng_lines[i].strip(), "e").strip().split()[1:-1])
+            french.append(preprocess(fre_lines[i].strip(), "f").strip().split()[1:-1])
     return english, french
 
 def initialize(eng, fre):

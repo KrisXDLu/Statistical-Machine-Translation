@@ -31,7 +31,7 @@ def log_prob(sentence, LM, smoothing=False, delta=0, vocabSize=0):
     log_prob = 0
     bi_log_prob = float("-inf")
 
-    words = sentence.split(" ")
+    words = sentence.split()
     for i in range(1, len(words)):
         cur = words[i]
         pre = words[i-1]
