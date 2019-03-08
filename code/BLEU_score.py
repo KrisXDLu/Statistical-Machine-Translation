@@ -48,27 +48,29 @@ n :(int) one of 1,2,3. N-Gram level.
             for i in range(len(references)):
                 cur = references[i].split()
                 size = len(cur)
+                # print(size)
                 if abs(size - denom) < diff:
                     diff = abs(size - denom)
                     sim = i
             # print(sim)
             # print(diff)
-            brevity = len(references[sim])/denom
+            brevity = len(references[sim].split())/denom
+            # print("final")
+            # print(len(references[sim]))
+
             if brevity < 1:
                 bp = 1
             else:
                 bp = math.exp(1-brevity)
             bleu_score = 1
-            print("denom " + str(denom-i+1))
+            # print("denom " + str(denom-i+1))
             for i in range(1,n+1):
                 score = 0
                 for j in range(len(sentence)-i+1):
                     phrase = " ".join(sentence[j:j+i])
-                    print(phrase)
                     for sent in references:
                         if phrase in sent:
                             score += 1
-                            print("inhere")
                             break
                 bleu_score = bleu_score * score/(denom-i+1)
             bleu_score = bleu_score ** (1/n)
@@ -88,8 +90,8 @@ references_list = ["It is a guide to action that ensures that the military will 
 "It is the guiding principle which guarantees the military forces always being under command of the Party",
 "It is the practical guide for the army always to heed the directions of the party"]
 print(BLEU_score(candidate1, references_list, 1, True))
-# print(BLEU_score(candidate1, references_list, 2, True))
-# print(BLEU_score(candidate1, references_list, 3, True))
+print(BLEU_score(candidate1, references_list, 2, True))
+print(BLEU_score(candidate1, references_list, 3, True))
 
 
 
