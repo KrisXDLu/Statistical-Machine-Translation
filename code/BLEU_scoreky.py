@@ -65,12 +65,15 @@ def BLEU_score(candidate, references, n, brevity=False):
     return bleu_score
 
 candidate1 = "It is a guide to action which ensures that the military always obeys the commands of the party"
-# candidate2 = "It is to insure the troops forever hearing the activity guidebook that party direct"
+candidate2 = "It is to insure the troops forever hearing the activity guidebook that party direct"
 # candidate3 = "I fear David"
 # references_list2 = ['I am afraid Dave', 'I am scared Dave', 'I have fear David']
 references_list = ["It is a guide to action that ensures that the military will forever heed Party commands",
 "It is the guiding principle which guarantees the military forces always being under command of the Party",
 "It is the practical guide for the army always to heed the directions of the party"]
-print(BLEU_score(candidate1, references_list, 1))
-print(BLEU_score(candidate1, references_list, 2))
-print(BLEU_score(candidate1, references_list, 3))
+print(BLEU_score(candidate2, references_list, 1, True))
+print(BLEU_score(candidate2, references_list, 2, True))
+print(BLEU_score(candidate2, references_list, 3, True))
+print(BLEU_score(candidate2, references_list, 1))
+print(BLEU_score(candidate2, references_list, 2))
+print(BLEU_score(candidate2, references_list, 3))

@@ -39,5 +39,15 @@ def preplexity(LM, test_dir, language, smoothing = False, delta = 0):
     return pp
 
 #test
-test_LM = lm_train("../data/Hansard/Testing/", "e", "e_temp")
-print(preplexity(test_LM, "../data/Hansard/Testing/", "e"))
+# test_LM = lm_train("../data/Hansard/Testing/", "e", "e_temp")
+# delta_list = [0.05, 0.25, 0.5, 0.75, 1]
+# for delta in delta_list:
+#     print(preplexity(test_LM, "../data/Hansard/Testing/", "f", True, delta))
+
+# print(preplexity(test_LM, "../data/Hansard/Testing/", "f"))
+# print(preplexity(test_LM, "../data/Hansard/Testing/", "e"))
+# 38.351063093155126
+# 74.51702675962814
+# 106.02237248692346
+# 132.35249009777215
+# 155.79005310855305

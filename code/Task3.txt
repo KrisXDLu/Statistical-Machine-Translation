@@ -1,0 +1,24 @@
+# test_LM = lm_train("../data/Hansard/Testing/", "e", "e_temp")
+# delta_list = [0.05, 0.25, 0.5, 0.75, 1]
+# for delta in delta_list:
+#     print(preplexity(test_LM, "../data/Hansard/Testing/", "e", True, delta))
+
+output for eng when delta is [0, 0.05, 0.25, 0.5, 0.75, 1] correspondingly
+15.358308719313145
+38.351063093155126
+74.51702675962814
+106.02237248692346
+132.35249009777215
+155.79005310855305
+for fre
+15.299115766561917
+42.256737151989746
+85.64123680160463
+124.58332504453793
+157.64732267863477
+187.36005987375236
+
+
+when we add smoothing, and the higher the delta the higher perplexity, therefore,
+adding smoothing actually make our language model less accurate.  When we add
+smoothing we removed a lot of unseen words' zero.

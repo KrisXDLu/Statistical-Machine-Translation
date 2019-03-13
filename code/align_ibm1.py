@@ -36,8 +36,8 @@ def align_ibm1(train_dir, num_sentences, max_iter, fn_AM):
 
     for i in range(max_iter):
         AM = em_step(AM, eng, fre)
-        print(i)
-
+        # print(i)
+    # print(AM)
     with open(fn_AM+'.pickle', 'wb') as handle:
         pickle.dump(AM, handle, protocol=pickle.HIGHEST_PROTOCOL)
       
@@ -61,7 +61,7 @@ def read_hansard(train_dir, num_sentences):
     """
     # TODO
     files = os.listdir(train_dir)
-    files = set([f[:-1] for f in files])
+    files = set([f[:-1] for f in files if f[-1] == "e" or f[-1] == "f"])
     # vocab_size = len(LM["uni"])
     english = []
     french = []
@@ -104,7 +104,7 @@ def initialize(eng, fre):
 
     AM["SENTSTART"] = {"SENTSTART": 1}
     AM["SENTEND"] = {"SENTEND": 1}
-
+    # print(AM)
     return AM
     
 def em_step(t, eng, fre):
@@ -148,7 +148,9 @@ def em_step(t, eng, fre):
 # t = initialize(['the blue cat blue'.split(' '), 'the red dog'.split(' ')],['le chat bleu'.split(' '), 'le chein rouge'.split(' ')])
 # print(t)
 # print(em_step(t, ['the blue cat'.split(' '), 'the red dog'.split(' ')],['le chat bleu'.split(' '), 'le chein rouge'.split(' ')]))
-r = align_ibm1('../data/Hansard/Training/', 1000, 100, "am_temp")
-print(r['the']['le'])
-print(r['the']["l'"])
-print(r['the']['la'])
+r = align_ibm1('../data/Hansard/Training/', 1000, 100, "./am")
+# print(r['the']['le'])
+# print(r['the']["l'"])
+# print(r['the']['la'])
+# r = align_ibm1('../data/Toy/', 1000, 100, "toy_temp")
+# print(r)

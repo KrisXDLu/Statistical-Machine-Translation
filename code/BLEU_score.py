@@ -23,16 +23,17 @@ n :(int) one of 1,2,3. N-Gram level.
         bleu_score = 0
         score = 0
         sentence = candidate.split()
-        if n >= len(sentence):
-            print("not enough words in sentence")
+
         # print(len(sentence[1:1+n]) == n)
         denom = len(sentence)
         if not brevity:
             for i in range(len(sentence)-n+1):
                 phrase = " ".join(sentence[i:i+n])
+                phrase = " " + phrase + " "
                 # print(phrase)
                 # print(len(phrase))
                 for sent in references:
+                    sent = " " + sent + " "
                     if phrase in sent:
                         score += 1
                         break
@@ -43,7 +44,7 @@ n :(int) one of 1,2,3. N-Gram level.
             return bleu_score
         else:
 
-            diff = 1000000
+            diff = float('inf')
             sim = -1
             for i in range(len(references)):
                 cur = references[i].split()
@@ -68,7 +69,9 @@ n :(int) one of 1,2,3. N-Gram level.
                 score = 0
                 for j in range(len(sentence)-i+1):
                     phrase = " ".join(sentence[j:j+i])
+                    phrase = " " + phrase + " "
                     for sent in references:
+                        sent = " " + sent + " "
                         if phrase in sent:
                             score += 1
                             break
@@ -82,16 +85,19 @@ n :(int) one of 1,2,3. N-Gram level.
 
 
 
-candidate1 = "It is a guide to action which ensures that the military always obeys the commands of the party"
+# candidate1 = "It is a guide to action which ensures that the military always obeys the commands of the party"
 # candidate2 = "It is to insure the troops forever hearing the activity guidebook that party direct"
 # candidate3 = "I fear David"
-references_list2 = ['I am afraid Dave', 'I am scared Dave', 'I have fear David']
-references_list = ["It is a guide to action that ensures that the military will forever heed Party commands",
-"It is the guiding principle which guarantees the military forces always being under command of the Party",
-"It is the practical guide for the army always to heed the directions of the party"]
-print(BLEU_score(candidate1, references_list, 1, True))
-print(BLEU_score(candidate1, references_list, 2, True))
-print(BLEU_score(candidate1, references_list, 3, True))
+# # references_list2 = ['I am afraid Dave', 'I am scared Dave', 'I have fear David']
+# references_list = ["It is a guide to action that ensures that the military will forever heed Party commands",
+# "It is the guiding principle which guarantees the military forces always being under command of the Party",
+# "It is the practical guide for the army always to heed the directions of the party"]
+# print(BLEU_score(candidate2, references_list, 1, True))
+# print(BLEU_score(candidate2, references_list, 2, True))
+# print(BLEU_score(candidate2, references_list, 3, True))
+# print(BLEU_score(candidate2, references_list, 1))
+# print(BLEU_score(candidate2, references_list, 2))
+# print(BLEU_score(candidate2, references_list, 3))
 
 
 

@@ -39,10 +39,10 @@ def preprocess(in_sentence, language):
     return out_sentence
 
 
-def main():
-	with open("./test.f", "r") as file:
-		for line in file.readlines():
-			print(line + " ::: " + preprocess(line, "f"))
+# def main():
+# 	with open("./test.f", "r") as file:
+# 		for line in file.readlines():
+# 			print(line + " ::: " + preprocess(line, "f"))
 
-if __name__ == "__main__":
-	main()
+# if __name__ == "__main__":
+# 	main()

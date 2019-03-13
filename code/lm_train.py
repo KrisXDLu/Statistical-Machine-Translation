@@ -38,7 +38,7 @@ def lm_train(data_dir, language, fn_LM):
         if name[-1] == language:
             with open(data_dir+name, "r") as file:
                 for line in file.readlines():
-                    sentence = preprocess(line, name[-1]).split(" ")
+                    sentence = preprocess(line.strip(), name[-1]).split(" ")
                     for i in range(len(sentence)):
                         word = sentence[i]
                         if len(word.strip()) > 0:
@@ -61,3 +61,5 @@ def lm_train(data_dir, language, fn_LM):
         pickle.dump(LM, handle, protocol=pickle.HIGHEST_PROTOCOL)
         
     return LM
+
+# print(lm_train('../data/Toy/', 'f', 'toy_lm'))
